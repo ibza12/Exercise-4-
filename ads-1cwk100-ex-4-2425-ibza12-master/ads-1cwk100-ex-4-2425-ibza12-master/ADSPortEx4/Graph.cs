@@ -24,31 +24,62 @@ namespace ADSPortEx4
 
     class Graph<T> where T : IComparable
     {
+        private LinkedList<GraphNode<T>> nodes; private LinkedList<GraphNode<T>> edges;
         public Graph()
         {
-            throw new NotImplementedException();
+            nodes = new LinkedList<GraphNode<T>>();
         }
 
         //Functions for EX.4A
 
         public void AddNode(T id)
         {
-            throw new NotImplementedException();
+            nodes.AddLast(new graphNode<T>(id));
         }
 
         public void AddEdge(T from, T to)
         {
             throw new NotImplementedException();
         }
+        public GraphNode<T> GetNodeByID(T id) 
+        {
+          foreach(GraphNode<T> current in nodes) 
+          {
+             if(current.ID.CompareTo(id) == 0) 
+             {
+               return current;
+             }
+          }
+          return null;
+        }
 
+        
+        public void AddEdge(T from, T to) 
+        {
+           GraphNode<T> n1 =GetNodeByID(From);
+            GraphNode<T> n2 =GetNodeByID(To);
+
+            if(n1 != null && n2 != null)
+            {
+               n1.AddEdge(n2);            
+            }
+        }
+
+        
         public int NumNodes()
         {
-            throw new NotImplementedException();
+            return nodes.Count;
         }
 
         public int NumEdges()
         {
-            throw new NotImplementedException();
+            int count = 0;
+
+            foreach(GraphNode<T> current in nodes) 
+            {
+              count += current.GetAdjList().count;
+            }
+            return count;
         }
 
         //Functions for EX.4B
