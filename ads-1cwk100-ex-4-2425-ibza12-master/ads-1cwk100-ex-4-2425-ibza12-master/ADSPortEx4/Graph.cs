@@ -34,7 +34,7 @@ namespace ADSPortEx4
 
         public void AddNode(T id)
         {
-            nodes.AddLast(new graphNode<T>(id));
+            nodes.AddLast(new GraphNode<T>(id));
         }
 
         public void AddEdge(T from, T to)
@@ -77,7 +77,7 @@ namespace ADSPortEx4
 
             foreach(GraphNode<T> current in nodes) 
             {
-              count += current.GetAdjList().count;
+              count += current.GetAdjList().Count;
             }
             return count;
         }
